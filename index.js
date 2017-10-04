@@ -1,26 +1,271 @@
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
+ctx.fillStyle = "#0dff00";
 
-getElementById("canvas").mousedown(function(event) {
-    lastMouseEvent = event;
-    isMouseDown = true;
-});
 
-getElementById("canvas").mousemove(function(currentMouseEvent) {
-    if(isMouseDown === true) {
-      // ctx.lineJoin = 'round';
-      // ctx.lineCap = 'round';
-        context.beginPath();
-        context.moveTo(lastMouseEvent.offsetX, lastMouseEvent.offsetY);
-        context.lineTo(currentMouseEvent.offsetX, currentMouseEvent.offsetY);
-        context.strokeStyle = "#0dff00";
-        context.lineWidth = "4px";
-        context.stroke();
-        console.log(lastMouseEvent.offsetX, currentMouseEvent.offsetX);
-        lastMouseEvent = currentMouseEvent;
+// creating the grid
+function createArray (rows) {
+  var array = [];
+
+  for(var i = 0; i < rows; i++) {
+    array[i] = [];
+  }
+  return array;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function updateGrid() {//perform one iteration of grid update
+  for(var j = 1; j < gridHeight - 1; j++) {//iterate through rows
+    for(var k = 1; k < gridWidth - 1; k++) {//iterate through columns
+      var totalCells = 0;
+      //add up the total values for the surrounding cells
+      totalCells += theGrid[j-1][k-1];//top left
+      totalCells += theGrid[j-1][k];//top center
+      totalCells += theGrid[j-1][k+1];//top right
+      totalCells += theGrid[j][k-1];//middle left
+      totalCells += theGrid[j][k+1];//middle right
+      totalCells += theGrid[j+1][k-1];//bottom left
+      totalCells += theGrid[j+1][k];//bottom center
+      totalCells += theGrid[j+1][k+1];//bottom right
+      //apply the rules to each cell
+      if(theGrid[j][k] === 0){
+        switch(totalCells){
+          case 3:
+          mirrorGrid[j][k] = 1;//if cell is dead and has 3 neighbors switch it on
+          break;
+          default;
+          mirrorGrid[j][k] = 0;//otherwise leave it dead
+        }
+      }else if(theGrid[j][k] === 1) {//apply rules to living cell
+        switch(totalCells){
+          case 0:
+          case 1:
+          mirrorGrid[j][k] = 0;//die of loneliness(Sad!)
+          break;
+          case 2:
+          case 3:
+          mirrorGrid[j][k] = 1;//carry on living(like a bahs)
+          break;
+          case 4:
+          case 5:
+          case 6:
+          case 7:
+          case 8:
+          mirrorGrid[j][k] = 0;//die of overcrowding(also Sad!)
+          break;
+        }
+      }
     }
-});
-
-getElementById("canvas").mouseup(function() {
-    isMouseDown = false;
-});
+  }
+  //copy mirrorGrid to theGrid
+  for(var j = 0;j < gridHeight; j++){//iterate through rows
+    for(var k = 0; k < gridWidth; k++){//iterate through columns
+      theGrid[j][k] = mirrorGrid[j][k];
+    }
+  }
+}
+function tick(){
+  drawGrid();
+  updateGrid();
+  requestAnimationFrame(tick);
+}
