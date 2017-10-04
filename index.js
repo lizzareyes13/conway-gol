@@ -9,6 +9,8 @@ ctx.fillStyle = 'rgb('+
       Math.floor(Math.random()*256)+','+
       Math.floor(Math.random()*256)+')';
 
+
+
 fillRandom(); //create the starting state for the grid by filling it with random cells
 
 tick(); //call main loop
