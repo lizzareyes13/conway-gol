@@ -1,13 +1,14 @@
-var gridHeight = 500;
-var gridWidth = 500;
+var gridHeight = 800;
+var gridWidth = 800;
 var theGrid = createArray(gridWidth);
 var mirrorGrid = createArray(gridWidth);
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
 ctx.fillStyle = 'rgb('+
-      Math.floor(Math.random()*256)+','+
-      Math.floor(Math.random()*256)+','+
-      Math.floor(Math.random()*256)+')';
+      Math.floor(Math.random()*850)+','+
+      Math.floor(Math.random()*850)+','+
+      Math.floor(Math.random()*850)+')';
+ctx.fillstyle2 =
 
 
 
