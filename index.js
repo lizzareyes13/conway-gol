@@ -107,3 +107,6 @@ function tick(){
   drawGrid();
   updateGrid();
   requestAnimationFrame(tick);
+}
+
+//A comment at the end to test a branch
