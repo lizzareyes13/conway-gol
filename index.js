@@ -1,5 +1,5 @@
-var gridHeight = 800;
-var gridWidth = 800;
+var gridHeight = 700;
+var gridWidth = 700;
 var theGrid = createArray(gridWidth);
 var mirrorGrid = createArray(gridWidth);
 var c = document.getElementById("canvas");
