@@ -32,3 +32,23 @@ function fillRandom () {
     }
   }
 }
+
+
+//drawing the grid on the screen
+function drawGrid () {
+  var c = document.getElementById('canvas');
+  var ctx = canvas.getContext('2d');
+
+  ctx.clearRect(0,0,400,400);
+
+  for ( var j = 1; j < gridHeight; j++) {
+    for ( var k = 1; k < gridWidth; k++ ) {
+      if (theGrid[j][k] === 1) {
+        ctx.fillStyle = "#FF0000";
+
+        ctx.fillRect(j,k,1,1);
+        
+      }
+    }
+  }
+}
