@@ -1,16 +1,27 @@
-var gridHeight = 700;
-var gridWidth = 700;
+var gridHeight = 500;
+var gridWidth = 500;
 var theGrid = createArray(gridWidth);
 var mirrorGrid = createArray(gridWidth);
 var c = document.getElementById("canvas");
 var ctx = c.getContext("2d");
-ctx.fillStyle = 'rgb('+
-      Math.floor(Math.random()*850)+','+
-      Math.floor(Math.random()*850)+','+
-      Math.floor(Math.random()*850)+')';
-ctx.fillstyle2 =
+var transition = document.getElementById("canvas").style.transitionTimingFunction = "linear";
+
+function changeColors () {
+  ctx.fillStyle = '#'+
+  Math.floor(Math.random()*16777215).toString(16); //color transition
+}
+setInterval(changeColors, 9000);
+
+colorTransition = changeColors();
+
+colorTransition;
 
 
+//   function changeColors(){
+//  ctx.fillStyle = '#'+
+//   Math.round(Math.random()*16777215).toString(16);
+// }
+// setInterval(changeColors, 200);
 
 fillRandom(); //create the starting state for the grid by filling it with random cells
 
